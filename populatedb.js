@@ -19,7 +19,6 @@ var Genre = require("./models/genre");
 var Movie = require("./models/movie");
 
 var mongoose = require("mongoose");
-const { create } = require("./modals/movie");
 var mongoDB = userArgs[0];
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
@@ -175,13 +174,13 @@ function createGenres(cb) {
   async.parallel(
     [
       function (callback) {
-        genreCreate("Drama");
+        genreCreate("Drama", callback);
       },
       function (callback) {
-        genreCreate("Crime");
+        genreCreate("Crime", callback);
       },
       function (callback) {
-        genreCreate("Action");
+        genreCreate("Action", callback);
       },
     ],
     cb
